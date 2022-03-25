@@ -22,7 +22,7 @@ namespace MT.FreeCourse.Catalog.Controllers
         }
 
 
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAll()
         {
 
             var response = await _courseService.GetAllAsync();
@@ -45,7 +45,7 @@ namespace MT.FreeCourse.Catalog.Controllers
             return CreateActionResultInstance(response);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(CourseCreateDto courseCreateDto)
+        public async Task<IActionResult> Create(CourseCreateDto courseCreateDto)
         {
 
             var response = await _courseService.CreateAsync(courseCreateDto);
@@ -53,7 +53,7 @@ namespace MT.FreeCourse.Catalog.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(CourseUpdateDto courseUpdateDto)
+        public async Task<IActionResult> Update(CourseUpdateDto courseUpdateDto)
         {
 
             var response = await _courseService.UpdateAsync(courseUpdateDto);
@@ -61,7 +61,7 @@ namespace MT.FreeCourse.Catalog.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(string id)
+        public async Task<IActionResult> Delete(string id)
         {
 
             var response = await _courseService.DeleteAsync(id);
