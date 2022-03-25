@@ -2,7 +2,7 @@
 
 namespace MT.FreeCourse.Catalog.Dtos
 {
-    public class CourseCreateDto
+    internal class CourseCreateDto
     {
        
 

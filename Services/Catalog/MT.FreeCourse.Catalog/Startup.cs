@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MT.FreeCourse.Catalog.Services.Concrete;
+using MT.FreeCourse.Catalog.Services.Interfaces;
+using MT.FreeCourse.Catalog.Settings.Abstract;
+using MT.FreeCourse.Catalog.Settings.Concrete;
 
 namespace MT.FreeCourse.Catalog
 {
@@ -28,6 +27,10 @@ namespace MT.FreeCourse.Catalog
 
             services.AddControllers();
 
+            #region DI
+            services.AddScoped<ICategoryService, CategoryService>();
+            #endregion
+
             #region SwaggerDependencies
 
             services.AddSwaggerGen(c=> {
@@ -42,6 +45,16 @@ namespace MT.FreeCourse.Catalog
             #region AutoMapperDependencies
             services.AddAutoMapper(typeof(Startup) );
             #endregion
+
+            #region OptionPattern
+            services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
+
+            services.AddSingleton<IDatabaseSettings>(sp => {
+                return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+
+            });
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

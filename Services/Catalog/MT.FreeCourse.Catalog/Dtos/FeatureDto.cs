@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MT.FreeCourse.Catalog.Dtos
 {
-    public class FeatureDto
+    internal class FeatureDto
     {
         public int Duration { get; set; }
     }
