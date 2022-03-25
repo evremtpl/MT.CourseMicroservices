@@ -39,6 +39,9 @@ namespace MT.FreeCourse.Catalog
             
             });
             #endregion
+            #region AutoMapperDependencies
+            services.AddAutoMapper(typeof(Startup) );
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
