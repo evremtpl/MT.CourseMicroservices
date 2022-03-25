@@ -29,6 +29,7 @@ namespace MT.FreeCourse.Catalog
 
             #region DI
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICourseService, CourseService>();
             #endregion
 
             #region SwaggerDependencies
