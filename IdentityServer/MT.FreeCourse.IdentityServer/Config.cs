@@ -44,6 +44,7 @@ namespace MT.FreeCourse.IdentityServer
                 {
                    ClientName="Asp.Net Core MVC",
                    ClientId="webMvcClient",
+                   AllowOfflineAccess=true;
                    ClientSecrets = { new  Secret("secret".Sha256()) },
                    AllowedGrantTypes={ new string (GrantType.ClientCredentials) },
                    AllowedScopes={ "catalog_fullpermission", "photo_stock_fullpermission", IdentityServerConstants.LocalApi.ScopeName }
