@@ -55,14 +55,15 @@ namespace MT.FreeCourse.IdentityServer
 
                 if(!userManager.Users.Any())
                 {
-                    userManager.CreateAsync(new ApplicationUser
+                     userManager.CreateAsync(new ApplicationUser
                     {
                         UserName = "ipek",
-                        Email="merve.tpl@yahoo.com",
-                        City="Ankara"
-                      
+                        Email = "merve.tpl@yahoo.com",
+                        City = "Ankara"
 
-                    },"microiden12*") .Wait();
+
+                    }, "Microiden12*").Wait();
+
                 }
 
 
