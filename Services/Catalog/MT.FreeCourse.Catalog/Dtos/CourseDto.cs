@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MT.FreeCourse.Catalog.Dtos
 {
-    internal class CourseDto
+    public class CourseDto
     {
 
         

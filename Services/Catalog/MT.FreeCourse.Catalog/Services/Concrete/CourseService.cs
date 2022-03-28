@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MT.FreeCourse.Catalog.Services.Concrete
 {
-    internal class CourseService :ICourseService
+    public class CourseService :ICourseService
     {
         private readonly IMongoCollection<Course> _courseCollection;
        // private readonly IMongoCollection<Category> _categoryCollection;

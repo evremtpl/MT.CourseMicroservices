@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MT.FreeCourse.Catalog.Services.Concrete
 {
-    internal class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
 
         private readonly IMongoCollection<Category> _categoryCollection;

@@ -12,7 +12,7 @@ namespace MT.FreeCourse.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    internal class CourseController : CustomBaseController
+    public class CourseController : CustomBaseController
     {
         private readonly ICourseService _courseService;
 
@@ -21,7 +21,7 @@ namespace MT.FreeCourse.Catalog.Controllers
             _courseService = courseService;
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
 
@@ -37,6 +37,7 @@ namespace MT.FreeCourse.Catalog.Controllers
             return CreateActionResultInstance<CourseDto>(response);
         }
        // [HttpGet("{id:length(24)}", Name = "GetAllByuserId")]
+       [HttpGet]
         [Route("/api/[controller]/GetAllByuserId/{userId}")]
         public async Task<IActionResult> GetAllByuserId(string userId)
         {
