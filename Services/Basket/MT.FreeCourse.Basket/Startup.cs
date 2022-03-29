@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using MT.FreeCourse.Basket.Services.Concrete;
 using MT.FreeCourse.Basket.Settings;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,14 @@ namespace MT.FreeCourse.Basket
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<RedisSettings>(Configuration.GetSection("RedisSettings"));
+            services.AddSingleton<RedisService>(sp => {
+                var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
+                var redis = new RedisService ( redisSettings.Port, redisSettings.Host );
+
+                return redis;
+            });
+
+
             services.AddControllers();
         }
 
