@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MT.FreeCourse.Basket.Services.Interfaces
 {
-    interface IBasketService
+   public interface IBasketService
     {
         Task <Response<BasketDto>> GetBasket (string userId);
         Task<Response<bool>> CreateOrUpdate(BasketDto basketDto);
