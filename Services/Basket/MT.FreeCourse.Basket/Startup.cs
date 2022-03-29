@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MT.FreeCourse.Basket.Services.Concrete;
 using MT.FreeCourse.Basket.Settings;
+using MT.FreeCourse.Shared.Services.Concrete;
+using MT.FreeCourse.Shared.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,13 @@ namespace MT.FreeCourse.Basket
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+            services.AddHttpContextAccessor();
+
             services.Configure<RedisSettings>(Configuration.GetSection("RedisSettings"));
+
+
             services.AddSingleton<RedisService>(sp => {
                 var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
                 var redis = new RedisService ( redisSettings.Port, redisSettings.Host );
