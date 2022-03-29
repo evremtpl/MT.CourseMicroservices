@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +33,21 @@ namespace MT.FreeCourse.Basket
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            
+
+            #region JWT
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => {
+
+                opt.Authority = Configuration["IdentityServerURL"];
+                opt.Audience = "resource_basket";
+                opt.RequireHttpsMetadata = false;
+
+            });
+            #endregion
+
+
+
             services.AddScoped<IBasketService, BasketService>();
 
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
@@ -45,8 +63,11 @@ namespace MT.FreeCourse.Basket
                 return redis;
             });
 
-
-            services.AddControllers();
+            var requireauthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            services.AddControllers(opt=> {
+                opt.Filters.Add(new AuthorizeFilter(requireauthorizePolicy));
+            
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +81,7 @@ namespace MT.FreeCourse.Basket
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
