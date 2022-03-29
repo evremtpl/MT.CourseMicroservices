@@ -44,7 +44,7 @@ namespace MT.FreeCourse.IdentityServer
                 {
                    ClientName="Asp.Net Core MVC",
                    ClientId="webMvcClient",
-                   AllowOfflineAccess=true;
+                   
                    ClientSecrets = { new  Secret("secret".Sha256()) },
                    AllowedGrantTypes={ new string (GrantType.ClientCredentials) },
                    AllowedScopes={ "catalog_fullpermission", "photo_stock_fullpermission", IdentityServerConstants.LocalApi.ScopeName }
@@ -54,7 +54,9 @@ namespace MT.FreeCourse.IdentityServer
                 {
                    ClientName="Asp.Net Core MVC",
                    ClientId="webMvcClientForUser",
-                   ClientSecrets = { new  Secret("secret".Sha256()) },
+
+                   AllowOfflineAccess=true,
+                   ClientSecrets = { new  Secret("secrets".Sha256()) },
                    AllowedGrantTypes={ new string (GrantType.ResourceOwnerPassword) },
                    AllowedScopes=
                         {
@@ -62,6 +64,7 @@ namespace MT.FreeCourse.IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
+                        IdentityServerConstants.LocalApi.ScopeName,
                         "roles" //kullanıcı online olmasa bile refresh tokenla access token alınabilir
                         },
                    AccessTokenLifetime=1*60*60,

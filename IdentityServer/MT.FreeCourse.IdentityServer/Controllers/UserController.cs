@@ -7,6 +7,7 @@ using MT.FreeCourse.IdentityServer.Models;
 using MT.FreeCourse.Shared.Dtos;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using static IdentityServer4.IdentityServerConstants;
@@ -43,6 +44,17 @@ namespace MT.FreeCourse.IdentityServer.Controllers
                 return BadRequest(Response<NoContent>.Fail(result.Errors.Select(x=>x.Description).ToList(),400));
             }
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUser()
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
+            if (userIdClaim == null) return BadRequest();
+
+            var user = await _userManager.FindByIdAsync(userIdClaim.Value);
+
+            return Ok(new {Id=user.Id,UserName=user.UserName,Email=user.Email,City=user.City,Owner="Merve" });
         }
     }
 }
