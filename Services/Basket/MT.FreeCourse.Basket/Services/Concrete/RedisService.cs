@@ -17,6 +17,6 @@ namespace MT.FreeCourse.Basket.Services.Concrete
 
         public void Connect() => _connectionMultiplexer = ConnectionMultiplexer.Connect($"{_host}:{_port}");
 
-        public IDatabase GetDb(int dbNumber = 0) => _connectionMultiplexer.GetDatabase(dbNumber);
+        public IDatabase GetDb(int dbNumber = 1) => _connectionMultiplexer.GetDatabase(dbNumber);
     }
 }

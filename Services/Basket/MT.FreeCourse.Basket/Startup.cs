@@ -2,22 +2,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MT.FreeCourse.Basket.Services.Concrete;
 using MT.FreeCourse.Basket.Services.Interfaces;
 using MT.FreeCourse.Basket.Settings;
 using MT.FreeCourse.Shared.Services.Concrete;
 using MT.FreeCourse.Shared.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace MT.FreeCourse.Basket
 {
@@ -44,6 +39,7 @@ namespace MT.FreeCourse.Basket
                 opt.RequireHttpsMetadata = false;
 
             });
+          JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
             #endregion
 
 
