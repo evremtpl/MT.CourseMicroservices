@@ -1,6 +1,6 @@
 Services
 -Catalog API => 7001
 -PhotoStock API => 7002
-
+-Basket API => 7003
 
 IdentityServer => 5007
