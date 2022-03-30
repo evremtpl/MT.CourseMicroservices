@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MT.FreeCourse.Discount.Services.Concrete;
+using MT.FreeCourse.Discount.Services.Interfaces;
+using MT.FreeCourse.Shared.Services.Concrete;
+using MT.FreeCourse.Shared.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace MT.FreeCourse.Discount
@@ -24,6 +28,12 @@ namespace MT.FreeCourse.Discount
         {
 
             services.AddControllers();
+
+
+            services.AddScoped<IDiscountService, DiscountService>();
+
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+            services.AddHttpContextAccessor();
 
             #region JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => {
