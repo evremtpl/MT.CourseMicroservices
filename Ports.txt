@@ -3,4 +3,6 @@ Services
 -PhotoStock API => 7002
 -Basket API => 7003
 -Discount API => 7004
+-Order API => 7005
+
 IdentityServer => 5007
