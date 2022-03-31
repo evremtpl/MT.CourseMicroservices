@@ -11,7 +11,11 @@
       ],
       "UpstreamPathTemplate": "/services/catalogs/{everything}",
       "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ],
-      "UpstreamScheme": "http"
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": ["catalog_fullpermission"]
+      }
     },
 
     {
@@ -25,7 +29,11 @@
       ],
       "UpstreamPathTemplate": "/services/photostocks/{everything}",
       "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ],
-      "UpstreamScheme": "http"
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": ["photo_stock_fullpermission"]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -38,7 +46,11 @@
       ],
       "UpstreamPathTemplate": "/services/baskets/{everything}",
       "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ],
-      "UpstreamScheme": "http"
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "basket_fullpermission" ]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -51,7 +63,12 @@
       ],
       "UpstreamPathTemplate": "/services/discounts/{everything}",
       "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ],
-      "UpstreamScheme": "http"
+      "UpstreamScheme": "http",
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "discount_fullpermission" ]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -64,7 +81,11 @@
       ],
       "UpstreamPathTemplate": "/services/orders/{everything}",
       "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ],
-      "UpstreamScheme": "http"
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "order_fullpermission" ]
+      }
     },
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -77,7 +98,11 @@
       ],
       "UpstreamPathTemplate": "/services/fakepayments/{everything}",
       "UpstreamHttpMethod": [ "Get", "Put", "Post", "Delete" ],
-      "UpstreamScheme": "http"
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationSchema",
+        "AllowedScopes": [ "fakepayment_fullpermission" ]
+      }
     }
   ],
   "GlobalConfiguration": {
