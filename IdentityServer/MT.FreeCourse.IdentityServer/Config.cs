@@ -15,10 +15,13 @@ namespace MT.FreeCourse.IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("resource_catalog"){ Scopes={ "catalog_fullpermission" } },
-             new ApiResource("resource_basket"){ Scopes={ "basket_fullpermission" } },
-             new ApiResource("resource_photo_stock"){ Scopes={ "photo_stock_fullpermission" } },
-             new ApiResource("resource_discount"){ Scopes={ "discount_fullpermission" } },
-             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
+            new ApiResource("resource_basket"){ Scopes={ "basket_fullpermission" } },
+            new ApiResource("resource_photo_stock"){ Scopes={ "photo_stock_fullpermission" } },
+            new ApiResource("resource_discount"){ Scopes={ "discount_fullpermission" } },
+            new ApiResource("resource_order"){ Scopes={ "order_fullpermission" } },
+            new ApiResource("resource_fakepayment"){ Scopes={ "fakepayment_fullpermission" } },
+            new ApiResource("resource_gateway"){ Scopes={ "gateway_fullpermission" } },
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
@@ -36,7 +39,10 @@ namespace MT.FreeCourse.IdentityServer
                new ApiScope("photo_stock_fullpermission","photo_stock  api için full erişim"),
                new ApiScope("basket_fullpermission","basket için full erişim"),
                new ApiScope("discount_read","discount  api için read erişim"),
-                new ApiScope("discount_fullpermission","discount  api için full erişim"),
+               new ApiScope("discount_fullpermission","discount  api için full erişim"),
+               new ApiScope("order_fullpermission","order  api için full erişim"),
+               new ApiScope("fakepayment_fullpermission","fakepayment  api için full erişim"),
+               new ApiScope("gateway_fullpermission","gateway  api için full erişim"),
                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -49,10 +55,10 @@ namespace MT.FreeCourse.IdentityServer
                 {
                    ClientName="Asp.Net Core MVC",
                    ClientId="webMvcClient",
-                   
+
                    ClientSecrets = { new  Secret("secret".Sha256()) },
                    AllowedGrantTypes={ new string (GrantType.ClientCredentials) },
-                   AllowedScopes={ "catalog_fullpermission", "photo_stock_fullpermission", IdentityServerConstants.LocalApi.ScopeName }
+                   AllowedScopes={ "catalog_fullpermission", "photo_stock_fullpermission", "gateway_fullpermission" ,IdentityServerConstants.LocalApi.ScopeName }
                 },
 
                     new Client
@@ -65,7 +71,7 @@ namespace MT.FreeCourse.IdentityServer
                    AllowedGrantTypes={ new string (GrantType.ResourceOwnerPassword) },
                    AllowedScopes=
                         {
-                        "basket_fullpermission","discount_fullpermission",
+                        "basket_fullpermission","discount_fullpermission","order_fullpermission","fakepayment_fullpermission","gateway_fullpermission",
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
