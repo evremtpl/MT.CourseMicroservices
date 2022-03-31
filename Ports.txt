@@ -4,5 +4,6 @@ Services
 -Basket API => 7003
 -Discount API => 7004
 -Order API => 7005
+-FakePayment API => 7006
 
 IdentityServer => 5007

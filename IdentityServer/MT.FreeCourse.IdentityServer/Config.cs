@@ -19,6 +19,7 @@ namespace MT.FreeCourse.IdentityServer
              new ApiResource("resource_photo_stock"){ Scopes={ "photo_stock_fullpermission" } },
              new ApiResource("resource_discount"){ Scopes={ "discount_fullpermission" } },
               new ApiResource("resource_order"){ Scopes={ "order_fullpermission" } },
+              new ApiResource("resource_fakepayment"){ Scopes={ "fakepayment_fullpermission" } },
              new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -39,6 +40,7 @@ namespace MT.FreeCourse.IdentityServer
                new ApiScope("discount_read","discount  api için read erişim"),
                 new ApiScope("discount_fullpermission","discount  api için full erişim"),
                 new ApiScope("order_fullpermission","order  api için full erişim"),
+                new ApiScope("fakepayment_fullpermission","fakepayment  api için full erişim"),
                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -67,7 +69,7 @@ namespace MT.FreeCourse.IdentityServer
                    AllowedGrantTypes={ new string (GrantType.ResourceOwnerPassword) },
                    AllowedScopes=
                         {
-                        "basket_fullpermission","discount_fullpermission","order_fullpermission",
+                        "basket_fullpermission","discount_fullpermission","order_fullpermission","fakepayment_fullpermission",
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
