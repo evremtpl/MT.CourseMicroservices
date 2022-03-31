@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\MT.FreeCourse.Shared\MT.FreeCourse.Shared.csproj" />
+    <ProjectReference Include="..\MT.FreeCourse.Order.Domain\MT.FreeCourse.Order.Domain.csproj" />
+    <ProjectReference Include="..\MT.FreeCourse.Order.Infrastructure\MT.FreeCourse.Order.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

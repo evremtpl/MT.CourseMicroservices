@@ -6,7 +6,7 @@ using System;
 
 namespace MT.FreeCourse.Catalog.Models
 {
-    class Course
+    internal class Course
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
