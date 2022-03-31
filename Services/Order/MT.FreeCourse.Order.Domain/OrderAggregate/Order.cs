@@ -22,6 +22,10 @@ namespace MT.FreeCourse.Order.Domain.OrderAggregate
 
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
+        public Order()
+        {
+
+        }
         public Order(Address address, string buyerId)
         {
             _orderItems = new List<OrderItem>();
