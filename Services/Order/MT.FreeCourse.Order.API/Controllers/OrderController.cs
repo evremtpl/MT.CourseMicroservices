@@ -34,7 +34,7 @@ namespace MT.FreeCourse.Order.API.Controllers
             return CreateActionResultInstance(response);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> CreateOrder(CreateOrderCommand createOrderCommand )
         {
             var response = await _mediator.Send(createOrderCommand);
