@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MT.FreeCourse.Web.Services.Concrete;
+using MT.FreeCourse.Web.Services.Interfaces;
 using MT.FreeCourse.Web.Settings;
 
 namespace MT.FreeCourse.Web
@@ -19,6 +21,9 @@ namespace MT.FreeCourse.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpContextAccessor();
+            services.AddHttpClient<IIdentityService, IdentityService>();
             #region AppSettingConfClass
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
 
