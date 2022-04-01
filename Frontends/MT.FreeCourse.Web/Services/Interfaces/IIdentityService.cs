@@ -4,7 +4,7 @@ using MT.FreeCourse.Shared.Dtos;
 using MT.FreeCourse.Web.Models;
 using System.Threading.Tasks;
 
-namespace MT.FreeCourse.Web.Services
+namespace MT.FreeCourse.Web.Services.Interfaces
 {
    public interface IIdentityService
     {
