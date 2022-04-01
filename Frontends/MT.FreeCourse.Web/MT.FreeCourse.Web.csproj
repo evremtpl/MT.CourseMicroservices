@@ -24,4 +24,12 @@
     <None Include="wwwroot\lib\bootstrap-5.1.3\.github\workflows\release-notes.yml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="5.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\MT.FreeCourse.Shared\MT.FreeCourse.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
