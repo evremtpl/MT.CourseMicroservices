@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MT.FreeCourse.Web.Handlers;
 using MT.FreeCourse.Web.Services.Concrete;
 using MT.FreeCourse.Web.Services.Interfaces;
 using MT.FreeCourse.Web.Settings;
+using System;
 
 namespace MT.FreeCourse.Web
 {
@@ -22,13 +25,39 @@ namespace MT.FreeCourse.Web
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddHttpContextAccessor();
-            services.AddHttpClient<IIdentityService, IdentityService>();
             #region AppSettingConfClass
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
 
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
             #endregion
+            var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+            services.AddHttpContextAccessor();
+            services.AddHttpClient<IIdentityService, IdentityService>();
+            services.AddHttpClient<IUserService, UserService>(opt=>
+            {
+                opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
+            
+            }).AddHttpMessageHandler<PasswordTokenHandler>();
+         
+
+            #region CookieConfiguration
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie
+                (CookieAuthenticationDefaults.AuthenticationScheme, "MerveCookies", opt =>
+                  {
+                      opt.LoginPath = "/Auth/SignIn";
+                      opt.ExpireTimeSpan = TimeSpan.FromDays(60);
+                      opt.SlidingExpiration = true;
+                      opt.Cookie.Name = "FreeCourseWebCookie";
+                  });
+
+
+
+            #endregion
+
+
+
+
+
 
             services.AddControllersWithViews();
         }
@@ -49,6 +78,7 @@ namespace MT.FreeCourse.Web
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

@@ -32,7 +32,7 @@ namespace MT.FreeCourse.Web.Controllers
             {
                 response.Errors.ForEach(x =>
                 {
-                    ModelState.AddModelError("Hata", x);
+                    ModelState.AddModelError("", x);
 
                 });
 
