@@ -20,7 +20,7 @@ namespace MT.FreeCourse.Web.Services.Concrete
 
         public async Task<UserViewModel> GetUser()
         {
-            return await _userHttpClient.GetFromJsonAsync<UserViewModel>("/api/user/getuser");
+            return await _userHttpClient.GetFromJsonAsync<UserViewModel>("/api/user/Index");
         }
     }
 }

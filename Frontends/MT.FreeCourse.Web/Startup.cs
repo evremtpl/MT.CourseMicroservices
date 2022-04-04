@@ -33,6 +33,9 @@ namespace MT.FreeCourse.Web
             var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
             services.AddHttpContextAccessor();
             services.AddHttpClient<IIdentityService, IdentityService>();
+
+
+            services.AddScoped<PasswordTokenHandler>();
             services.AddHttpClient<IUserService, UserService>(opt=>
             {
                 opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
