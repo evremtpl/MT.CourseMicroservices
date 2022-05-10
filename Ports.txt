@@ -7,4 +7,5 @@ Services
 -FakePayment API => 7006
 
 IdentityServer => 5007
--Gateway => 5000
+Web => 5008
+Gateway => 5000

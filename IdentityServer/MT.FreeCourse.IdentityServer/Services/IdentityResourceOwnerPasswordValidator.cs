@@ -21,7 +21,7 @@ namespace MT.FreeCourse.IdentityServer.Services
 
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
-            var existUser = await _userManager.FindByEmailAsync(context.UserName);//username değil email gelecek
+            var existUser =  _userManager.FindByEmailAsync(context.UserName).Result;//username değil email gelecek
 
             if(existUser==null)
             {
