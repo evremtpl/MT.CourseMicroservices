@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MT.FreeCourse.Shared.Services.Concrete;
+using MT.FreeCourse.Shared.Services.Interfaces;
 using MT.FreeCourse.Web.Handlers;
 using MT.FreeCourse.Web.Services.Concrete;
 using MT.FreeCourse.Web.Services.Interfaces;
@@ -32,10 +34,24 @@ namespace MT.FreeCourse.Web
             #endregion
             var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
             services.AddHttpContextAccessor();
-            services.AddHttpClient<IIdentityService, IdentityService>();
+            services.AddAccessTokenManagement();
 
 
+
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
             services.AddScoped<PasswordTokenHandler>();
+            services.AddScoped<ClientCredentialTokenHandler>();
+            services.AddHttpClient<IIdentityService, IdentityService>();
+            services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+
+
+            services.AddHttpClient<ICatalogService, CatalogService>(opt =>
+            {
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
+
+            }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+           
             services.AddHttpClient<IUserService, UserService>(opt=>
             {
                 opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
